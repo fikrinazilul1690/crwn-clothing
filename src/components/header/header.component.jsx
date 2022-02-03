@@ -2,9 +2,12 @@ import "./header.styles.scss";
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { auth } from "../../firebase/firebase.utils";
+
+//! https://facebook.github.io/create-react-app/docs/adding-images-fonts-and-files
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
-export const Header = () => {
+export const Header = ({ currentUser }) => {
 	return (
 		<div className='header'>
 			<Link to='/'>
@@ -17,6 +20,15 @@ export const Header = () => {
 				<Link className='option' to='/shop'>
 					CONTACT
 				</Link>
+				{currentUser ? (
+					<div className='option' onClick={() => auth.signOut()}>
+						SIGN OUT
+					</div>
+				) : (
+					<Link className='option' to='signin'>
+						SIGN IN
+					</Link>
+				)}
 			</div>
 		</div>
 	);
