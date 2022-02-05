@@ -7,7 +7,9 @@ import { auth } from "../../firebase/firebase.utils";
 //! https://facebook.github.io/create-react-app/docs/adding-images-fonts-and-files
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
-export const Header = ({ currentUser }) => {
+import { connect } from "react-redux";
+
+const Header = ({ currentUser }) => {
 	return (
 		<div className='header'>
 			<Link to='/'>
@@ -33,3 +35,9 @@ export const Header = ({ currentUser }) => {
 		</div>
 	);
 };
+
+const mapStateToProps = (state) => ({
+	currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);
