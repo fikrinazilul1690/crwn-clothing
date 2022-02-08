@@ -4,6 +4,14 @@
 /node_modules
 /.pnp
 .pnp.js
+/.storybook
+
+
+#sass build
+/css
+
+#storybook
+/*/stories
 
 # testing
 /coverage
