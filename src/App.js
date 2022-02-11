@@ -1,18 +1,20 @@
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./App.css";
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
-import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./.firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
 import CheckoutPage from "./pages/checkout/checkout.component";
 import { selectCurrentUser } from "./redux/user/user.selectors";
+import { Layout } from "./pages/layout/layout.component";
+import CollectionPage from "./pages/collection/collection.component";
+import NotFoundPage from "./pages/notfound/notfound.component";
 
 class App extends React.Component {
 	unsubscribeFromAuth = null;
@@ -42,11 +44,13 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<Header />
-				<Routes>
-					<Route path='/' element={<HomePage />} />
-					<Route path='shop' element={<ShopPage />}></Route>
+			<Routes>
+				<Route path='/' element={<Layout />}>
+					<Route index element={<HomePage />} />
+					<Route path='shop' element={<Outlet />}>
+						<Route index element={<ShopPage />} />
+						<Route path=':collectionId' element={<CollectionPage />} />
+					</Route>
 					<Route path='checkout' element={<CheckoutPage />} />
 					<Route
 						path='signin'
@@ -58,8 +62,9 @@ class App extends React.Component {
 							)
 						}
 					/>
-				</Routes>
-			</div>
+					<Route path='*' element={<NotFoundPage />} />
+				</Route>
+			</Routes>
 		);
 	}
 }

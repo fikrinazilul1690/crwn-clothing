@@ -1,4 +1,7 @@
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import {
+	auth,
+	createUserProfileDocument,
+} from "../../.firebase/firebase.utils";
 import "./sign-up.styles.scss";
 
 import React, { Component } from "react";
