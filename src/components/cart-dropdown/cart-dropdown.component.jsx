@@ -1,17 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import { connect } from "react-redux";
-import { CartItem } from "../cart-item/cart-item.component";
+import { connect } from 'react-redux';
+import { CartItem } from '../cart-item/cart-item.component';
 
-import { CustomButton } from "../custom-button/custom-button.component";
+import { CustomButton } from '../custom-button/custom-button.component';
 
-import { selectCartItems } from "../../redux/cart/cart.selectors";
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 
-import "./cart-dropdown.styles.scss";
-import { createStructuredSelector } from "reselect";
+import './cart-dropdown.styles.scss';
+import { createStructuredSelector } from 'reselect';
 
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { toggleCartHidden } from "../../redux/cart/cart.actions";
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 function withRouter(Component) {
 	function ComponentWithRouterProp(props) {
@@ -39,8 +38,7 @@ const CartDropdown = ({ cartItems, router, dispatch }) => {
 			<CustomButton
 				inverted
 				onClick={() => {
-					router.navigate("checkout");
-					dispatch(toggleCartHidden());
+					router.navigate('checkout');
 				}}
 			>
 				Go to checkout
