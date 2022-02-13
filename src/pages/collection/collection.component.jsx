@@ -24,7 +24,6 @@ function withRouter(Component) {
 const CollectionPage = ({ collection, match }) => {
 	// const params = useParams();
 	// const collection = useSelector(selectCollection(params.collectionId));
-	console.log(match.params);
 	if (!collection) return <NotFoundPage />;
 	const { title, items } = collection;
 	return (
