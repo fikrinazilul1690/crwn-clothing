@@ -1,0 +1,35 @@
+.notfound {
+	width: 400px;
+	margin: auto;
+	position: relative;
+
+	* {
+		margin: 0;
+	}
+
+	.notfound-404 {
+		font-size: 15em;
+		font-family: "Titillium Web", sans-serif;
+		color: rgba($color: #999999, $alpha: 0.8);
+	}
+
+	.title {
+		position: absolute;
+		bottom: 90px;
+	}
+
+	.description {
+		margin-bottom: 10px;
+	}
+
+	.link {
+		text-decoration: underline;
+		font-weight: bold;
+		font-size: 1.5em;
+		color: rgba(0, 100, 200, 0.7);
+
+		&:hover {
+			color: #5c91fe;
+		}
+	}
+}
