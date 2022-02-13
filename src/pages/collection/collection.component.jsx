@@ -1,17 +1,30 @@
-import "./collection.styles.scss";
+import './collection.styles.scss';
 
-import React from "react";
-import { useSelector } from "react-redux";
-import { selectCollection } from "../../redux/shop/shop.selectors";
-import { useParams } from "react-router-dom";
+import React from 'react';
 
-import CollectionItem from "../../components/collection-item/collection-item.component";
-import NotFoundPage from "../notfound/notfound.component";
+import { connect } from 'react-redux';
+// import { useSelector } from "react-redux";
+import { selectCollection } from '../../redux/shop/shop.selectors';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
-const CollectionPage = () => {
-	const params = useParams();
-	const collection = useSelector(selectCollection(params.collectionId));
-	console.log(collection);
+import CollectionItem from '../../components/collection-item/collection-item.component';
+import NotFoundPage from '../notfound/notfound.component';
+
+function withRouter(Component) {
+	function ComponentWithRouterProp(props) {
+		let location = useLocation();
+		let navigate = useNavigate();
+		let params = useParams();
+		return <Component {...props} match={{ location, navigate, params }} />;
+	}
+
+	return ComponentWithRouterProp;
+}
+
+const CollectionPage = ({ collection, match }) => {
+	// const params = useParams();
+	// const collection = useSelector(selectCollection(params.collectionId));
+	console.log(match.params);
 	if (!collection) return <NotFoundPage />;
 	const { title, items } = collection;
 	return (
@@ -26,4 +39,8 @@ const CollectionPage = () => {
 	);
 };
 
-export default CollectionPage;
+const mapStateToProps = (state, ownProps) => ({
+	collection: selectCollection(ownProps.match.params.collectionId)(state),
+});
+
+export default withRouter(connect(mapStateToProps)(CollectionPage));
