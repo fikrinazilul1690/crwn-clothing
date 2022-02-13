@@ -33,7 +33,7 @@ const CheckoutPage = ({ cartItems, total }) => {
 					<span>Remove</span>
 				</div>
 			</div>
-			{cartItems.lenght ? (
+			{cartItems.length ? (
 				cartItems.map((cartItem) => (
 					<CheckoutItem key={cartItem.id} cartItem={cartItem} />
 				))
