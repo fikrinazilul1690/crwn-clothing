@@ -23,6 +23,19 @@
 		}
 	}
 
+	.no-item {
+		font-size: 24px;
+		padding-top: 10px;
+		a {
+			text-decoration: underline;
+			color: rgba(0, 100, 200, 0.7);
+
+			&:hover {
+				color: #5c91fe;
+			}
+		}
+	}
+
 	.total {
 		margin-top: 30px;
 		margin-left: auto;

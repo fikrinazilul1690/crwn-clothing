@@ -1,16 +1,19 @@
-import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import CheckoutItem from "../../components/checkout-item/checkout-item.component";
-import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component';
 import {
 	selectCartItems,
 	selectCartTotal,
-} from "../../redux/cart/cart.selectors";
+} from '../../redux/cart/cart.selectors';
 
-import "./checkout.styles.scss";
+import { Link } from 'react-router-dom';
+
+import './checkout.styles.scss';
 
 const CheckoutPage = ({ cartItems, total }) => {
+	console.log(cartItems);
 	return (
 		<div className='checkout-page'>
 			<div className='checkout-header'>
@@ -30,9 +33,15 @@ const CheckoutPage = ({ cartItems, total }) => {
 					<span>Remove</span>
 				</div>
 			</div>
-			{cartItems.map((cartItem) => (
-				<CheckoutItem key={cartItem.id} cartItem={cartItem} />
-			))}
+			{cartItems.lenght ? (
+				cartItems.map((cartItem) => (
+					<CheckoutItem key={cartItem.id} cartItem={cartItem} />
+				))
+			) : (
+				<span className='no-item'>
+					Cart Empty, <Link to={'/shop'}>Go back to shop</Link>
+				</span>
+			)}
 			<div className='total'>{`TOTAL: $${total}`}</div>
 			<div className='test-warning'>
 				*Please use the following test credit card for payments*
