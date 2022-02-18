@@ -23,7 +23,7 @@ function withRouter(Component) {
 	return ComponentWithRouterProp;
 }
 
-const CartDropdown = ({ cartItems, router, dispatch }) => {
+const CartDropdown = ({ cartItems, router }) => {
 	return (
 		<div className='cart-dropdown'>
 			<div className='cart-items'>

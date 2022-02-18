@@ -1,25 +1,35 @@
-.cart-icon {
+.cart-icon-dropdown {
+	display: flex;
 	width: 45px;
 	height: 100%;
-	position: relative;
-	display: flex;
-	align-items: center;
 	justify-content: center;
-
-	svg {
+	&.active {
+		.cart-dropdown {
+			display: flex;
+		}
+	}
+	.cart-icon {
+		height: 30px;
+		margin: auto;
+		position: relative;
+		display: block;
 		cursor: pointer;
-		z-index: 5;
-	}
 
-	.shopping-icon {
-		width: 24px;
-		height: 24px;
-	}
+		svg {
+			z-index: 5;
+		}
 
-	.item-count {
-		position: absolute;
-		font-size: 10px;
-		font-weight: bold;
-		bottom: 25px;
+		.shopping-icon {
+			width: 24px;
+			height: 24px;
+		}
+
+		.item-count {
+			position: absolute;
+			font-size: 10px;
+			font-weight: bold;
+			bottom: 7px;
+			right: 9.5px;
+		}
 	}
 }

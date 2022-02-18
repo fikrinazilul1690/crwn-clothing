@@ -16,17 +16,16 @@ import { useNavigate } from 'react-router-dom';
 
 const CartIcon = ({ cartHidden, cartShow, itemCount, show }) => {
 	const navigate = useNavigate();
+	const mode = show ? 'active ' : '';
 	return (
-		<div
-			className='cart-icon'
-			onMouseEnter={cartShow}
-			onMouseLeave={cartHidden}
-		>
-			<ShoppingIcon
-				className='shopping-icon'
-				onClick={() => navigate('/checkout')}
-			/>
-			<span className='item-count'>{itemCount}</span>
+		<div className={`${mode}cart-icon-dropdown`} onMouseLeave={cartHidden}>
+			<div className='cart-icon' onMouseEnter={cartShow}>
+				<ShoppingIcon
+					className='shopping-icon'
+					onClick={() => navigate('/checkout')}
+				/>
+				<span className='item-count'>{itemCount}</span>
+			</div>
 			{show ? <CartDropdown /> : null}
 		</div>
 	);
