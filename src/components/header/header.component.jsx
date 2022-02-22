@@ -9,8 +9,8 @@ import { createStructuredSelector } from 'reselect';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import { connect } from 'react-redux';
-import CartIcon from '../cart-icon/cart-icon.component';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import Cart from '../cart/cart.component';
 
 const Header = ({ currentUser }) => {
 	return (
@@ -34,7 +34,7 @@ const Header = ({ currentUser }) => {
 						SIGN IN
 					</Link>
 				)}
-				<CartIcon />
+				<Cart />
 			</div>
 		</div>
 	);

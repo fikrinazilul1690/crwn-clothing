@@ -1,0 +1,12 @@
+.cart-icon-dropdown {
+	display: flex;
+	width: 45px;
+	height: 100%;
+	justify-content: center;
+
+	&.active {
+		.cart-dropdown {
+			display: flex;
+		}
+	}
+}
