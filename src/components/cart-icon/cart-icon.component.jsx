@@ -6,13 +6,19 @@ import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 import './cart-icon.styles.scss';
 import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
 import { createStructuredSelector } from 'reselect';
+import { cartShow } from '../../redux/cart/cart.actions';
 
 import { useNavigate } from 'react-router-dom';
 
-const CartIcon = ({ itemCount, ...props }) => {
+const CartIcon = ({ itemCount, dispatch }) => {
 	const navigate = useNavigate();
 	return (
-		<div className='cart-icon' {...props}>
+		<div
+			className='cart-icon'
+			onMouseEnter={() => {
+				dispatch(cartShow());
+			}}
+		>
 			<ShoppingIcon
 				className='shopping-icon'
 				onClick={() => navigate('/checkout')}
