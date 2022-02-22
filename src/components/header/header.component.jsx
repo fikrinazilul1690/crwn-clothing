@@ -8,19 +8,15 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { connect } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import Cart from '../cart/cart.component';
-import {
-	HeaderContainer,
-	LogoContainer,
-	OptionLink,
-	OptionsContainer,
-} from './header.styles';
+import { HeaderContainer, OptionLink, OptionsContainer } from './header.styles';
+import { Link } from 'react-router-dom';
 
 const Header = ({ currentUser }) => {
 	return (
 		<HeaderContainer>
-			<LogoContainer to='/'>
-				<Logo className='logo' />
-			</LogoContainer>
+			<Link to='/'>
+				<Logo />
+			</Link>
 			<OptionsContainer>
 				<OptionLink to='/shop'>SHOP</OptionLink>
 				<OptionLink to='/shop'>CONTACT</OptionLink>
