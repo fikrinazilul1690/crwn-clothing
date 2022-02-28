@@ -10,20 +10,9 @@ import { selectCartItems } from '../../redux/cart/cart.selectors';
 import './cart-dropdown.styles.scss';
 import { createStructuredSelector } from 'reselect';
 
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import withRouter from '../../withRouter';
 
-function withRouter(Component) {
-	function ComponentWithRouterProp(props) {
-		let location = useLocation();
-		let navigate = useNavigate();
-		let params = useParams();
-		return <Component {...props} router={{ location, navigate, params }} />;
-	}
-
-	return ComponentWithRouterProp;
-}
-
-const CartDropdown = ({ cartItems, router }) => {
+const CartDropdown = ({ cartItems, match }) => {
 	return (
 		<div className='cart-dropdown'>
 			<div className='cart-items'>
@@ -38,7 +27,7 @@ const CartDropdown = ({ cartItems, router }) => {
 			<CustomButton
 				inverted
 				onClick={() => {
-					router.navigate('checkout');
+					match.navigate('checkout');
 				}}
 			>
 				Go to checkout

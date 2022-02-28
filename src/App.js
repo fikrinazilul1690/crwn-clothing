@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -13,7 +13,6 @@ import { createStructuredSelector } from 'reselect';
 import CheckoutPage from './pages/checkout/checkout.component';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { Layout } from './pages/layout/layout.component';
-import CollectionPage from './pages/collection/collection.component';
 import NotFoundPage from './pages/notfound/notfound.component';
 import ProtectedRoutes from './routes/protectedRoute';
 
@@ -23,19 +22,17 @@ class App extends React.Component {
 	componentDidMount() {
 		const { setCurrentUser } = this.props;
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-			// this.setState({ currentUser: user });
-			// console.log(user);
 			if (userAuth) {
 				const userRef = await createUserProfileDocument(userAuth);
-
 				userRef.onSnapshot((snapShot) => {
 					setCurrentUser({
 						id: snapShot.id,
 						...snapShot.data(),
 					});
 				});
+			} else {
+				setCurrentUser(userAuth);
 			}
-			setCurrentUser(userAuth);
 		});
 	}
 
@@ -48,10 +45,7 @@ class App extends React.Component {
 			<Routes>
 				<Route path='/' element={<Layout />}>
 					<Route index element={<HomePage />} />
-					<Route path='shop' element={<Outlet />}>
-						<Route index element={<ShopPage />} />
-						<Route path=':collectionId' element={<CollectionPage />} />
-					</Route>
+					<Route path='shop/*' element={<ShopPage />} />
 					<Route element={<ProtectedRoutes />}>
 						<Route path='checkout' element={<CheckoutPage />} />
 					</Route>

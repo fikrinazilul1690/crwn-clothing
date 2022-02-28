@@ -1,24 +1,13 @@
-import React from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import React from 'react';
+import withRouter from '../../withRouter';
 
-import "./menu-item.styles.scss";
+import './menu-item.styles.scss';
 
-function withRouter(Component) {
-	function ComponentWithRouterProp(props) {
-		let location = useLocation();
-		let navigate = useNavigate();
-		let params = useParams();
-		return <Component {...props} router={{ location, navigate, params }} />;
-	}
-
-	return ComponentWithRouterProp;
-}
-
-const MenuItem = ({ title, imageUrl, size, router, linkUrl }) => {
+const MenuItem = ({ title, imageUrl, size, match, linkUrl }) => {
 	return (
 		<div
 			className={`${size} menu-item`}
-			onClick={() => router.navigate(`${linkUrl}`)}
+			onClick={() => match.navigate(`${linkUrl}`)}
 		>
 			<div
 				className='background-image'

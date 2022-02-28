@@ -5,26 +5,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import { useSelector } from "react-redux";
 import { selectCollection } from '../../redux/shop/shop.selectors';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 import CollectionItem from '../../components/collection-item/collection-item.component';
 import NotFoundPage from '../notfound/notfound.component';
 
-function withRouter(Component) {
-	function ComponentWithRouterProp(props) {
-		let location = useLocation();
-		let navigate = useNavigate();
-		let params = useParams();
-		return <Component {...props} match={{ location, navigate, params }} />;
-	}
+import withRouter from '../../withRouter';
 
-	return ComponentWithRouterProp;
-}
-
-const CollectionPage = ({ collection, match }) => {
+const CollectionPage = ({ collection, isLoading, match }) => {
 	// const params = useParams();
 	// const collection = useSelector(selectCollection(params.collectionId));
-	if (!collection) return <NotFoundPage />;
+	console.log(match.params);
+	if (!collection && !isLoading) return <NotFoundPage />;
 	const { title, items } = collection;
 	return (
 		<div className='collection-page'>

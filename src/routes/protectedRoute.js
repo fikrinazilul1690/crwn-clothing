@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+import SignInAndSignUpPage from '../pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import { selectCurrentUser } from '../redux/user/user.selectors';
 
 const ProtectedRoutes = ({ currentUser }) => {
-	return currentUser ? <Outlet /> : <Navigate replace to={'/signin'} />;
+	return currentUser ? <Outlet /> : <SignInAndSignUpPage />;
 };
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
